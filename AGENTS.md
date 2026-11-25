@@ -18,7 +18,7 @@ AI 에이전트용 설치·사용 안내. 사람용 소개는 `README.md`.
 | Lumerical FDTD·RCWA·STACK | `lumerical` | Lumerical v242 |
 | Python RCWA·산란·원거리장 복사 열전달 계산 | `research-compute` | 없음 |
 
-모두 Python 을 쓴다(SpaceClaim·SPEOS 의 실행 스크립트는 CPython — 3.12·3.14 에서 시험). 앱의 검증한 판·설치 경로와 Python 패키지는 `plugins/<이름>/README.md` 의 "필요한 것".
+모두 Python 을 쓴다(SpaceClaim·SPEOS 의 실행 스크립트는 CPython — 3.12·3.14 에서 시험). 앱의 검증한 판·설치 경로와 Python 패키지는 `plugins/<이름>/README.md` 의 "요구 사항".
 
 설치할 에이전트와 하네스(Claude Code·Codex·agy)를 사용자에게 확인한다. 설정 파일을 바꾸는 단계마다 무엇을 바꿀지 보여 주고 먼저 묻고, 백업한다.
 
@@ -69,7 +69,7 @@ Codex 홈 = `CODEX_HOME`, 없으면 `%USERPROFILE%\.codex`. 아래 2·3번 모�
 
 ## 설치 뒤 (공통)
 
-- `plugins/<이름>/README.md` 의 "필요한 것"에 적힌 앱과 경로가 이 PC 에 있는지 확인하고, 없거나 다르면 사용자에게 알린다.
+- `plugins/<이름>/README.md` 의 "요구 사항"에 적힌 앱과 경로가 이 PC 에 있는지 확인하고, 없거나 다르면 사용자에게 알린다.
 
 ## 쓰기
 
