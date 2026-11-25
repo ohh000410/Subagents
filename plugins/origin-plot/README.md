@@ -2,7 +2,7 @@
 
 논문 형식 그래프를 그립니다.
 
-에이전트 설명(Claude 가 맡길지 고를 때 읽는 글): OriginLab Origin 그래프 생성·스타일링·export 전담 상담·실행 에이전트. Origin(win32com COM) 그래프를 논문 형식으로 그리거나 기존 .opju 스타일을 재현하는 요청, LabTalk/축/범례/심볼 스타일 질문을 처리한다. "오리진으로 그래프 그려줘", "이 논문 그래프 형식 따라해", "opju 스타일 재현", "LabTalk으로 축/범례 설정" 요청 시 사용. 데이터 계산·해석·물리 판단은 관할 외.
+에이전트 설명(메인 세션이 맡길지 고를 때 읽는 글): OriginLab Origin 그래프 생성·스타일링·export 전담 상담·실행 에이전트. Origin(win32com COM) 그래프를 논문 형식으로 그리거나 기존 .opju 스타일을 재현하는 요청, LabTalk/축/범례/심볼 스타일 질문을 처리한다. "오리진으로 그래프 그려줘", "이 논문 그래프 형식 따라해", "opju 스타일 재현", "LabTalk으로 축/범례 설정" 요청 시 사용. 데이터 계산·해석·물리 판단은 관할 외.
 
 ## 설치
 
@@ -13,6 +13,8 @@
 
 설치하면 에이전트 이름은 `origin-plot:origin-plot` 입니다. 이 에이전트가 뜰 때만 도는 훅(`hooks/hooks.json`)이 함께 설치되어,
 공통 규칙과 본문을 넣습니다.
+
+Codex·Antigravity 에서는 저장소를 받아 `codex/agents/origin-plot.toml`·`agy/agents/origin-plot/` 를 연결합니다 — 저장소 [README](../../README.md#빠른-시작)·[AGENTS.md](../../AGENTS.md).
 
 ## 필요한 것
 

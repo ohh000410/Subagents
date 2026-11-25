@@ -2,7 +2,7 @@
 
 광학 시뮬레이션을 돌리고 정리합니다.
 
-에이전트 설명(Claude 가 맡길지 고를 때 읽는 글): ANSYS SPEOS Direct simulation 상담·실행 에이전트. SPEOS sim 실행(sim 돌려줘·mesh sweep· ellipse_flux 추출)이나 NbRays·mesh·sensor·Report/API 오류를 진단할 때 사용. 상담 모드는 진단(코드·근거만, memory write 금지), 실행 모드는 base.scdocx 기반 Compute→Report 파싱→xlsx 저장까지 수행 후 검증된 함정만 기록. Geometry·FDTD·분석은 관할 외.
+에이전트 설명(메인 세션이 맡길지 고를 때 읽는 글): ANSYS SPEOS Direct simulation 상담·실행 에이전트. SPEOS sim 실행(sim 돌려줘·mesh sweep· ellipse_flux 추출)이나 NbRays·mesh·sensor·Report/API 오류를 진단할 때 사용. 상담 모드는 진단(코드·근거만, memory write 금지), 실행 모드는 base.scdocx 기반 Compute→Report 파싱→xlsx 저장까지 수행 후 검증된 함정만 기록. Geometry·FDTD·분석은 관할 외.
 
 ## 설치
 
@@ -13,6 +13,8 @@
 
 설치하면 에이전트 이름은 `speos:speos` 입니다. 이 에이전트가 뜰 때만 도는 훅(`hooks/hooks.json`)이 함께 설치되어,
 공통 규칙과 본문을 넣습니다.
+
+Codex·Antigravity 에서는 저장소를 받아 `codex/agents/speos.toml`·`agy/agents/speos/` 를 연결합니다 — 저장소 [README](../../README.md#빠른-시작)·[AGENTS.md](../../AGENTS.md).
 
 ## 필요한 것
 

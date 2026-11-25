@@ -2,7 +2,7 @@
 
 RCWA·산란·원거리장 복사 열전달.
 
-에이전트 설명(Claude 가 맡길지 고를 때 읽는 글): Python 기반 RCWA, TMM/Fresnel, Mie·core-shell 산란, 원거리장 복사 열전달 계산을 수행하고 수렴·cross-check까지 검증하는 에이전트. FDTD와 Lumerical RCWA·STACK은 관할 밖이다.
+에이전트 설명(메인 세션이 맡길지 고를 때 읽는 글): Python 기반 RCWA, TMM/Fresnel, Mie·core-shell 산란, 원거리장 복사 열전달 계산을 수행하고 수렴·cross-check까지 검증하는 에이전트. FDTD와 Lumerical RCWA·STACK은 관할 밖이다.
 
 ## 설치
 
@@ -13,6 +13,8 @@ RCWA·산란·원거리장 복사 열전달.
 
 설치하면 에이전트 이름은 `research-compute:research-compute` 입니다. 이 에이전트가 뜰 때만 도는 훅(`hooks/hooks.json`)이 함께 설치되어,
 공통 규칙과 본문을 넣습니다.
+
+Codex·Antigravity 에서는 저장소를 받아 `codex/agents/research-compute.toml`·`agy/agents/research-compute/` 를 연결합니다 — 저장소 [README](../../README.md#빠른-시작)·[AGENTS.md](../../AGENTS.md).
 
 ## 필요한 것
 

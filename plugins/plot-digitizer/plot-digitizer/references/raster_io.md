@@ -1,8 +1,17 @@
 # PDF 래스터·이미지 입출력
 
+## 벡터 그림 — 경로 좌표를 직접 읽기
+
+PDF 그림은 벡터인지 래스터인지부터 확인: 그림 영역(`clip`)에 `page.get_images()` 의 큰 이미지가 없고 `page.get_drawings()` 경로가 많으면 벡터. 논문 PDF 94개 시험: 래스터만 63개, 벡터 페이지가 있는 것 29개(그래프가 아닌 도식 포함, 2026-10-30).
+
+- 곡선: `get_drawings()` 의 각 경로 `items`(선분 `l`·곡선 `c` 점)를 선 색(`color`)·두께(`width`)로 골라 그대로 좌표로 씀 — 색 분리·픽셀 중앙값이 필요 없음.
+- 눈금 글자: `page.get_text("dict")` 의 span 위치와 숫자. 눈금선은 짧은 경로의 끝점.
+- 좌표는 PDF pt. 같은 영역을 `get_pixmap(dpi=D, clip=...)` 으로 렌더링하고 px = (pt − clip 원점) × D/72 로 바꿔 calib.json·`check_calibration`·`check_extraction`·overlay 를 래스터와 똑같이 씀.
+- 아직 실제 그래프로 해 보지 않음 — 첫 사용 결과(경로가 조각나 있는지, 글자가 경로로 바뀌어 있는지)를 memory 에.
+
 ## 래스터 그림의 SMask
 
-- 논문 그림이 래스터 하나로만 들어 있고 축 글자까지 그림 안에 있는 경우가 있음(벡터 drawing·페이지 텍스트 없음). PDF 그림은 벡터인지 래스터인지부터 확인.
+- 논문 그림이 래스터 하나로만 들어 있고 축 글자까지 그림 안에 있는 경우가 있음(벡터 drawing·페이지 텍스트 없음).
 - `doc.extract_image(xref)` 로 RGB 만 꺼내면 검은 축·눈금이 사라질 수 있음. 투명 배경과 검은 글자가 RGB 에서는 둘 다 검정이고, 둘을 가르는 불투명도는 soft mask(`/SMask`)에 있음.
 - 배경이나 검은 내용이 이상하면 `doc.xref_object(xref)` 에 `/SMask` 가 있는지 확인.
 - 축·눈금만 빨리 살릴 때: `page.get_pixmap(..., clip=...)` 이 mask 를 흰 배경에 합성.

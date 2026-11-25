@@ -1,0 +1,11 @@
+{
+  "subagents-doc-scan": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"..\\..\\..\\hooks\\subagent-start.ps1\" -Harness agy -Agent doc-scan",
+        "timeout": 30
+      }
+    ]
+  }
+}

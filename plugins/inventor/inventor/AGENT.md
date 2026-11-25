@@ -3,7 +3,7 @@
 질문 → Inventor COM 전문가. 실행 요청 → 기계 부품·조립품 3D 모델과 2D 도면 제작 담당자.
 
 - 상담 모드: COM API, IPT/IAM 모델링(Sketch·Extrude·Revolve·Hole), DrawingDocument/DrawingView/GeneralDimensions, STEP/IPT/IAM 도면화, 뷰 배치, 치수선, PDF 출력 오류 진단.
-- 실행 모드: 목표 = 3D 모델(`.ipt` / `.iam`) 또는 2D 도면(`.pdf` / `.idw`).
+- 실행 모드: 목표 = 3D 모델(`.ipt` / `.iam`, STEP·STL) 또는 2D 도면(`.pdf` / `.idw`). 모델링 기본 = build123d 로 형상 반복 → 절차 통과 → STEP → Inventor `.ipt`(`references/inventor_b3d_modeling.md`).
 
 ## 입력
 
@@ -11,7 +11,7 @@
 
 ## 관할
 
-안: Inventor COM automation(win32com), IPT/IAM 부품·조립품 모델링(Sketch·Extrude·Revolve·Hole·MassProperties), STEP/IPT/IAM → Drawing → PDF/IDW, 치수선(AddLinear/AddDiameter), GeneralNotes, iProperty, 뷰 배치·스케일·방향, 도면 품질 진단(겹침·테두리 이탈·pink dimension·export).
+안: build123d 형상 모델링(STEP·STL), Inventor COM automation(win32com), IPT/IAM 부품·조립품 모델링(Sketch·Extrude·Revolve·Hole·MassProperties), STEP/IPT/IAM → Drawing → PDF/IDW, 치수선(AddLinear/AddDiameter), GeneralNotes, iProperty, 뷰 배치·스케일·방향, 도면 품질 진단(겹침·테두리 이탈·pink dimension·export).
 밖: SPEOS·ANSYS로 넘길 형상·광학 곡면(NURBS) → spaceclaim / SPEOS sim → speos / FDTD → lumerical.
 
 ## 환경
@@ -20,7 +20,7 @@
 |---|---|
 | Inventor 2027 | `C:\Program Files\Autodesk\Inventor 2027\Bin\Inventor.exe` |
 | COM ProgID | `Inventor.Application` |
-| venv | 환경 값(PC 마다 다름) |
+| venv | Inventor COM 스크립트 = 환경 값(PC 마다 다름). build123d·가져오기 = `tools/.venv` |
 | IDW Template | `C:\Users\Public\Documents\Autodesk\Inventor 2027\Templates\en-US\Metric\ANSI (mm).idw` |
 | IPT Template | `C:\Users\Public\Documents\Autodesk\Inventor 2027\Templates\en-US\Metric\Standard (mm).ipt` |
 | API 문서 | 로컬 CHM `C:\Users\Public\Documents\Autodesk\Inventor 2027\Local Help\admapi_31_0.chm` 우선 → `https://help.autodesk.com/view/INVNTOR/2025/ENU/` |
@@ -30,7 +30,7 @@
 ## 작업 절차
 
 1. 요청 분석 → `references/inventor_drawing_api.md`에서 필요 reference만 선택. 돌출(ExtrudeFeatures)은 `references/inventor_ipt_modeling.md` 「Extrude」
-2. 스크립트: 모델링 = 스케치 → 피처 → `read_state` 되읽기 → `step_check` → `SaveAs2`. **피처마다** `step_check` 실행(`sys.path` 에 `${CLAUDE_PLUGIN_ROOT}/inventor/tools`, `from step_check import step_check, read_state, step_summary`). 이론 dV 직접 계산 → `exp_dV_cm3`, base extrude 는 `exp_bbox` 도. `[STEP FAIL]` = 그 자리에서 원인 수정 후 재실행, 다음 피처로 진행 금지. 판정 기준·함정 = `references/inventor_ipt_modeling.md` 「피처 단계 검증」. 도면 = 모델 → Drawing → 뷰 배치 → 치수 → 스펙 노트(ASCII — 한글은 PDF 저장 때 경고 창으로 멈춤) → PDF
+2. 스크립트: 모델링 기본 = build123d — `references/inventor_b3d_modeling.md` 대로. 요구가 여럿이면 먼저 요구사항 검사표(`b3d_req.Req`)를 만들어 사용자 확인 → 모델링 → 실행마다 `REQ SUMMARY`(FAIL 0 이어야 완료), 변수가 많으면 `optimize`. 피처는 단계마다 `state` + `step_check`, 마무리는 STEP 가져오기. 피처 트리 `.ipt` 요청 때만 Inventor 로 다시 작성 + 체적·bbox 대조. Inventor 로 작성할 때 = 스케치 → 피처 → `read_state` 되읽기 → `step_check` → `SaveAs2`. **피처마다** `step_check` 실행(`sys.path` 에 `${CLAUDE_PLUGIN_ROOT}/inventor/tools`, `from step_check import step_check, read_state, step_summary`). 이론 dV 직접 계산 → `exp_dV_cm3`, base extrude 는 `exp_bbox` 도. `[STEP FAIL]` = 그 자리에서 원인 수정 후 재실행, 다음 피처로 진행 금지. 판정 기준·함정 = `references/inventor_ipt_modeling.md` 「피처 단계 검증」. 도면 = 모델 → Drawing → 뷰 배치 → 치수 → 스펙 노트(ASCII — 한글은 PDF 저장 때 경고 창으로 멈춤) → PDF
    - 진행 마커 필수: 주요 단계 전후 `print("[t=%.1fs] STEP..." % (time.time()-t0), flush=True)`. Inventor 모달·hang = 예외 없는 정지
    - timeout: 기동+`Documents.Add` ≈ 12~21s = 고정비(2026-10-22 약 12s, 2026-08 21s), 예상치 아님
 3. 실행 전 Inventor 프로세스 확인. 이미 떠 있으면 **붙지도(COM Dispatch 는 실행 중 인스턴스에 붙음) 죽이지도 말고** 멈춰서 PID·창 제목을 보고. 기동은 `tools/inventor_session.py` 의 `launch()` (거부 + 자기 PID 확보), 수동이면 띄우기 전후 PID 목록 비교

@@ -2,7 +2,7 @@
 
 SPEOS·ANSYS 용 형상을 만듭니다.
 
-에이전트 설명(Claude 가 맡길지 고를 때 읽는 글): SpaceClaim 3D geometry(.scdocx/.step) 에이전트. SPEOS·ANSYS로 넘길 형상과 광학 곡면(NURBS 등)을 만들거나 SpaceClaim API·IronPython·geometry 오류를 진단할 때 사용. 상담 모드는 진단(코드·근거만, memory write 금지), 실행 모드는 .scdocx/.step 생성→검증까지 수행 후 검증된 함정만 기록. 일반 기계 부품 모델링과 2D 도면·PDF는 inventor 담당.
+에이전트 설명(메인 세션이 맡길지 고를 때 읽는 글): SpaceClaim 3D geometry(.scdocx/.step) 에이전트. SPEOS·ANSYS로 넘길 형상과 광학 곡면(NURBS 등)을 만들거나 SpaceClaim API·IronPython·geometry 오류를 진단할 때 사용. 상담 모드는 진단(코드·근거만, memory write 금지), 실행 모드는 .scdocx/.step 생성→검증까지 수행 후 검증된 함정만 기록. 일반 기계 부품 모델링과 2D 도면·PDF는 inventor 담당.
 
 ## 설치
 
@@ -13,6 +13,8 @@ SPEOS·ANSYS 용 형상을 만듭니다.
 
 설치하면 에이전트 이름은 `spaceclaim:spaceclaim` 입니다. 이 에이전트가 뜰 때만 도는 훅(`hooks/hooks.json`)이 함께 설치되어,
 공통 규칙과 본문을 넣습니다.
+
+Codex·Antigravity 에서는 저장소를 받아 `codex/agents/spaceclaim.toml`·`agy/agents/spaceclaim/` 를 연결합니다 — 저장소 [README](../../README.md#빠른-시작)·[AGENTS.md](../../AGENTS.md).
 
 ## 필요한 것
 

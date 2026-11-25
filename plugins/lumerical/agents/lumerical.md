@@ -24,7 +24,7 @@ memory: user
 - 앱·Python 준비: `${CLAUDE_PLUGIN_ROOT}/README.md`.
 
 ## 메모리
-Claude 에이전트 메모리 폴더를 쓴다(`MEMORY.md` 앞부분이 시작 때 함께 읽힌다). 처음에는 비어 있다.
+에이전트 메모리 폴더 `~/.claude/agent-memory/lumerical-lumerical/` 를 쓴다 — Claude Code 는 `MEMORY.md` 앞부분을 시작 때 함께 읽고, Codex·Antigravity 는 시작 훅이 넣어 준다(세 하네스가 같은 폴더). 처음에는 비어 있다.
 - 환경 값(앱 설치 경로·Python venv 등)이 메모리에 없으면 README 준비 절차로 확인하거나 사용자에게 묻고, 확인한 값을 기록한다.
 - 기록은 실행 모드에서만. 대상: 새 API 오류·시그니처 차이, 검증된 우회법, 재사용할 절차·함정, timeout 예측용 소요 시간, 환경 값. 미검증 추론·단순 반복·사용자 중단 실행은 기록하지 않는다.
 - 형식: 주제별 짧은 파일 + `MEMORY.md` 맨 끝에 링크 한 줄(`- [제목](파일.md) — 한 줄 설명`). `MEMORY.md` 의 칸·목차는 고치지 않는다(Harness-Memory 를 쓰면 매일 밤 정리가 제자리로 옮김). 경로·API 이름·오류 원문은 그대로. 새 오류는 실행 중 즉시 `[UNRESOLVED]`, 해결되면 `[RESOLVED]`.

@@ -1,0 +1,11 @@
+{
+  "subagents-speos": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"..\\..\\..\\hooks\\subagent-start.ps1\" -Harness agy -Agent speos",
+        "timeout": 30
+      }
+    ]
+  }
+}

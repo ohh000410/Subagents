@@ -2,7 +2,7 @@
 
 FDTD·RCWA 시뮬레이션을 돌립니다.
 
-에이전트 설명(Claude 가 맡길지 고를 때 읽는 글): Lumerical 상담·실행 에이전트 (FDTD·RCWA·STACK). 설정·수렴·mesh·PML·source/monitor·lumapi 질문은 전문가로 진단하고, 실행 요청은 lumapi 시뮬 실행→결과 추출→xlsx 저장까지만 수행. Lumerical 라이선스로 도는 solver는 전부 관할 — 순수 python RCWA(meent/grcwa/torcwa)는 research-compute 담당. 상담 모드는 시뮬 실행·memory write 금지(코드·진단만), 실행 모드만 시뮬 수행 후 검증된 실측/API 함정 기록.
+에이전트 설명(메인 세션이 맡길지 고를 때 읽는 글): Lumerical 상담·실행 에이전트 (FDTD·RCWA·STACK). 설정·수렴·mesh·PML·source/monitor·lumapi 질문은 전문가로 진단하고, 실행 요청은 lumapi 시뮬 실행→결과 추출→xlsx 저장까지만 수행. Lumerical 라이선스로 도는 solver는 전부 관할 — 순수 python RCWA(meent/grcwa/torcwa)는 research-compute 담당. 상담 모드는 시뮬 실행·memory write 금지(코드·진단만), 실행 모드만 시뮬 수행 후 검증된 실측/API 함정 기록.
 
 ## 설치
 
@@ -13,6 +13,8 @@ FDTD·RCWA 시뮬레이션을 돌립니다.
 
 설치하면 에이전트 이름은 `lumerical:lumerical` 입니다. 이 에이전트가 뜰 때만 도는 훅(`hooks/hooks.json`)이 함께 설치되어,
 공통 규칙과 본문을 넣습니다.
+
+Codex·Antigravity 에서는 저장소를 받아 `codex/agents/lumerical.toml`·`agy/agents/lumerical/` 를 연결합니다 — 저장소 [README](../../README.md#빠른-시작)·[AGENTS.md](../../AGENTS.md).
 
 ## 필요한 것
 

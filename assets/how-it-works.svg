@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 640" width="1420" height="640" font-family="Pretendard, 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#24292F"/>
+    </marker>
+    <marker id="ahr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#CF222E"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2DA44E"/>
+    </marker>
+    <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8B72FF"/>
+    </marker>
+  </defs>
+  <rect width="1420" height="640" fill="#FFFFFF"/>
+
+  <!-- phase labels -->
+  <g font-size="26" font-weight="700" fill="#1F2328">
+    <text x="40" y="54">메인 세션</text>
+    <text x="408" y="54">서브에이전트</text>
+    <text x="1136" y="54">보고</text>
+  </g>
+
+  <!-- panels -->
+  <rect x="24" y="72" width="272" height="500" rx="28" fill="#EAF2FF" stroke="#A9C4F5" stroke-width="2" stroke-dasharray="10 7"/>
+  <rect x="392" y="72" width="652" height="500" rx="28" fill="#FFF3EC" stroke="#F2C3A8" stroke-width="2" stroke-dasharray="10 7"/>
+  <rect x="1120" y="72" width="276" height="500" rx="28" fill="#EAF6EC" stroke="#A8D5B1" stroke-width="2" stroke-dasharray="10 7"/>
+
+  <!-- panel 1: user and the three harnesses -->
+  <g font-size="26" font-weight="700" fill="#1F2328">
+    <rect x="48" y="120" width="224" height="70" rx="16" fill="#FFFFFF" stroke="#D0D7DE"/>
+    <rect x="48" y="120" width="12" height="70" rx="6" fill="#6E7781"/>
+    <text x="80" y="164">사용자</text>
+  </g>
+  <path d="M160 190 V224" stroke="#24292F" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <g font-size="24" font-weight="700" fill="#1F2328">
+    <rect x="48" y="230" width="224" height="62" rx="14" fill="#FFFFFF" stroke="#D0D7DE"/>
+    <rect x="48" y="230" width="12" height="62" rx="6" fill="#D97757"/>
+    <text x="80" y="270">Claude Code</text>
+    <rect x="48" y="306" width="224" height="62" rx="14" fill="#FFFFFF" stroke="#D0D7DE"/>
+    <rect x="48" y="306" width="12" height="62" rx="6" fill="#24292F"/>
+    <text x="80" y="346">Codex</text>
+    <rect x="48" y="382" width="224" height="62" rx="14" fill="#FFFFFF" stroke="#D0D7DE"/>
+    <rect x="48" y="382" width="12" height="62" rx="6" fill="#4285F4"/>
+    <text x="80" y="422">Antigravity</text>
+  </g>
+  <text x="160" y="524" font-size="20" font-weight="700" fill="#1D4E89" text-anchor="middle">하네스 공통 에이전트</text>
+
+  <!-- panel 2: the subagent -->
+  <g>
+    <rect x="416" y="120" width="256" height="290" rx="18" fill="#2D333B" stroke="#2D333B"/>
+    <text x="438" y="170" font-size="27" font-weight="700" fill="#FFFFFF" font-family="Consolas, 'D2Coding', monospace">inventor</text>
+    <g font-size="20" fill="#FFFFFF">
+      <rect x="434" y="196" width="220" height="54" rx="10" fill="#3B434D"/>
+      <text x="452" y="230">공통 규칙</text>
+      <rect x="434" y="262" width="220" height="54" rx="10" fill="#3B434D"/>
+      <text x="452" y="296">본문</text>
+      <rect x="434" y="328" width="220" height="54" rx="10" fill="#3B434D"/>
+      <text x="452" y="362" font-family="Consolas, 'D2Coding', monospace">references/</text>
+    </g>
+
+    <rect x="416" y="448" width="256" height="74" rx="18" fill="#F3EFFF" stroke="#9A8CF0" stroke-width="2" stroke-dasharray="6 5"/>
+    <text x="438" y="493" font-size="21" font-weight="700" fill="#2E1A73">에이전트 메모리</text>
+    <path d="M544 410 V442" stroke="#8B72FF" stroke-width="2.4" stroke-dasharray="6 5" fill="none" marker-end="url(#ahp)"/>
+
+    <!-- app -->
+    <rect x="798" y="120" width="222" height="118" rx="18" fill="#FFFFFF" stroke="#E8B79A" stroke-width="2"/>
+    <text x="820" y="166" font-size="24" font-weight="700" fill="#1F2328">Windows 앱</text>
+    <text x="820" y="196" font-size="18" font-weight="600" fill="#3D444D" font-family="Consolas, 'D2Coding', monospace">Inventor · Origin</text>
+    <rect x="820" y="210" width="44" height="14" rx="3" fill="#F2C3A8"/>
+    <rect x="870" y="210" width="44" height="14" rx="3" fill="#F2C3A8"/>
+    <rect x="920" y="210" width="44" height="14" rx="3" fill="#F2C3A8"/>
+
+    <!-- verify -->
+    <rect x="798" y="290" width="222" height="110" rx="18" fill="#FFFFFF" stroke="#D9A441" stroke-width="2"/>
+    <circle cx="840" cy="345" r="18" fill="none" stroke="#D9932E" stroke-width="4"/>
+    <path d="M831 345 l6 7 l12 -14" fill="none" stroke="#D9932E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="870" y="353" font-size="23" font-weight="700" fill="#1F2328">되읽어 검증</text>
+  </g>
+
+  <!-- panel 2 arrows -->
+  <g stroke="#24292F" stroke-width="2.2" fill="none">
+    <path d="M672 179 H792" marker-end="url(#ah)"/>
+    <path d="M909 238 V284" marker-end="url(#ah)"/>
+  </g>
+  <path d="M798 372 H678" stroke="#CF222E" stroke-width="2.6" fill="none" marker-end="url(#ahr)"/>
+  <text x="735" y="362" font-size="18" font-weight="700" fill="#CF222E" text-anchor="middle">실패</text>
+
+  <!-- panel 3: report -->
+  <g font-size="21" font-weight="700" fill="#FFFFFF" font-family="Consolas, 'D2Coding', monospace">
+    <rect x="1144" y="150" width="228" height="50" rx="10" fill="#2DA44E"/>
+    <text x="1166" y="183">PASS</text>
+    <rect x="1144" y="212" width="228" height="50" rx="10" fill="#D9932E"/>
+    <text x="1166" y="245">WARN</text>
+    <rect x="1144" y="274" width="228" height="50" rx="10" fill="#CF222E"/>
+    <text x="1166" y="307">FAIL</text>
+  </g>
+  <rect x="1144" y="356" width="228" height="90" rx="18" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="2"/>
+  <path d="M1166 378 h26 l10 10 v38 h-36 z" fill="#4F86C6"/>
+  <rect x="1172" y="398" width="20" height="3" rx="1.5" fill="#FFFFFF"/><rect x="1172" y="407" width="14" height="3" rx="1.5" fill="#FFFFFF"/>
+  <text x="1216" y="410" font-size="22" font-weight="700" fill="#1F2328">파일 경로</text>
+  <text x="1258" y="524" font-size="20" font-weight="700" fill="#1E5C30" text-anchor="middle">검증된 결과만 보고</text>
+
+  <!-- cross-panel arrows -->
+  <path d="M272 261 H316 M272 337 H316 M272 413 H316 M316 261 V413" stroke="#24292F" stroke-width="2.4" fill="none"/>
+  <path d="M316 337 H410" stroke="#24292F" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <path d="M1020 345 H1114" stroke="#2DA44E" stroke-width="2.6" fill="none" marker-end="url(#ahg)"/>
+  <text x="1067" y="335" font-size="18" font-weight="700" fill="#2DA44E" text-anchor="middle">통과</text>
+  <path d="M1258 572 V604 H316 V419" stroke="#24292F" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <rect x="327" y="322" width="70" height="30" rx="15" fill="#FFFFFF" stroke="#24292F" stroke-width="2"/>
+  <text x="362" y="344" font-size="19" font-weight="700" fill="#1F2328" text-anchor="middle">위임</text>
+  <rect x="704" y="588" width="72" height="32" rx="16" fill="#FFFFFF" stroke="#24292F" stroke-width="2"/>
+  <text x="740" y="611" font-size="19" font-weight="700" fill="#1F2328" text-anchor="middle">결과</text>
+</svg>

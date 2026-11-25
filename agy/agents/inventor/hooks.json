@@ -1,0 +1,11 @@
+{
+  "subagents-inventor": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"..\\..\\..\\hooks\\subagent-start.ps1\" -Harness agy -Agent inventor",
+        "timeout": 30
+      }
+    ]
+  }
+}

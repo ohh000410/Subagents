@@ -2,9 +2,9 @@
 
 # Subagents
 
-**연구 전용 Claude Code 서브에이전트**
+**Claude Code·Codex·Antigravity 에서 쓰는 연구 전용 서브에이전트**
 
-![Claude Code 플러그인](https://img.shields.io/badge/Claude%20Code-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-D97757) ![에이전트 9개](https://img.shields.io/badge/%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-9%EA%B0%9C-2F80ED) ![플랫폼 Windows](https://img.shields.io/badge/%ED%94%8C%EB%9E%AB%ED%8F%BC-Windows-0078D6) ![라이선스 MIT](https://img.shields.io/badge/%EB%9D%BC%EC%9D%B4%EC%84%A0%EC%8A%A4-MIT-3DA639)
+![하네스 Claude Code · Codex · Antigravity](https://img.shields.io/badge/%ED%95%98%EB%84%A4%EC%8A%A4-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Antigravity-D97757) ![에이전트 9개](https://img.shields.io/badge/%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8-9%EA%B0%9C-2F80ED) ![플랫폼 Windows](https://img.shields.io/badge/%ED%94%8C%EB%9E%AB%ED%8F%BC-Windows-0078D6) ![라이선스 MIT](https://img.shields.io/badge/%EB%9D%BC%EC%9D%B4%EC%84%A0%EC%8A%A4-MIT-3DA639)
 
 논문 그래프·CAD 모델링·광학 시뮬레이션처럼 Windows 데스크톱 앱을 다루는 일을 맡기면,<br>
 에이전트가 앱을 직접 다루고 결과를 스스로 검증한 뒤 보고합니다.
@@ -17,36 +17,12 @@
 
 ## 이렇게 일합니다
 
-```mermaid
-%%{init: {"theme": "base", "themeVariables": {"lineColor": "#4F7DF3"}}}%%
-flowchart LR
-    U(["사용자<br/>Inventor 로<br/>이 부품 만들어줘"]) --> C("Claude Code<br/>메인 대화")
-    C --> A("서브에이전트<br/>inventor")
-    A --> P("앱<br/>Inventor")
-    P --> V{"되읽어<br/>검증"}
-    V --> A
-    V --> R("보고<br/>판정 + 파일 경로")
-    R --> C
-    A -.-> M[("에이전트 메모리<br/>배운 것 기록")]
-    classDef user fill:#E8F1FF,stroke:#2F80ED,color:#0B2E59
-    classDef claude fill:#D97757,stroke:#B85C3E,color:#FFFFFF,rx:14px,ry:14px
-    classDef agent fill:#7C5CFF,stroke:#5B3FE0,color:#FFFFFF,rx:14px,ry:14px
-    classDef app fill:#0EA5A4,stroke:#0B7F7E,color:#FFFFFF,rx:14px,ry:14px
-    classDef check fill:#FFC145,stroke:#D99A00,color:#3A2A00,font-size:14px,line-height:1.1
-    classDef report fill:#2DA44E,stroke:#1F7A38,color:#FFFFFF,rx:14px,ry:14px
-    classDef memory fill:#EEE7FF,stroke:#7C5CFF,color:#2E1A73
-    class U user
-    class C claude
-    class A agent
-    class P app
-    class V check
-    class R report
-    class M memory
-    linkStyle default stroke:#4F7DF3,stroke-width:2.5px
-    linkStyle 4 stroke:#E5534B,stroke-width:3px
-    linkStyle 5 stroke:#2DA44E,stroke-width:3px
-    linkStyle 7 stroke:#8E6CF5,stroke-width:2px
-```
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/how-it-works-dark.png">
+    <img src="assets/how-it-works.png" alt="사용자 → 메인 세션(Claude Code·Codex·Antigravity) → 서브에이전트(inventor) → Windows 앱 → 되읽어 검증 → 보고(판정·파일 경로)" width="85%">
+  </picture>
+</p>
 
 검증을 통과하면(초록) 판정과 파일 경로를 보고하고, 실패하면(빨강) 원인을 고쳐 다시 합니다. 쓰면서 배운 것은 에이전트 메모리에 남깁니다(보라 점선).
 
@@ -91,14 +67,24 @@ flowchart LR
 
 ## 빠른 시작
 
-Claude Code 안에서:
+**Claude Code** — 대화 안에서:
 
 ```
 /plugin marketplace add ohh000410/subagents
 /plugin install inventor@ohh000410-subagents
 ```
 
-`inventor` 자리에 원하는 에이전트 이름을 넣습니다. 설치한 뒤 새 대화에서 "Inventor 로 이 부품 만들어줘"처럼 말하면 Claude 가 그 에이전트에게 맡깁니다.
+`inventor` 자리에 원하는 에이전트 이름을 넣습니다. 설치한 뒤 새 대화에서 "Inventor 로 이 부품 만들어줘"처럼 말하면 그 에이전트에게 맡깁니다.
+
+**Codex · Antigravity** — 저장소를 받아 연결합니다.
+
+```
+git clone https://github.com/ohh000410/Subagents
+```
+
+- Codex: `codex/agents/` 의 에이전트 파일을 `~/.codex/agents/` 에 두고, `~/.codex/hooks.json` 의 `SubagentStart` 에 `hooks/subagent-start.ps1 -Harness codex` 를 넣은 뒤(설치한 이름만 matcher 로, 글 한도 `additionalContextLimit` 8000) Codex 에서 `/hooks` 로 승인합니다.
+- Antigravity: `~/.gemini/config/agents.json` 의 `entries` 에 `{"path": "<저장소>/agy/agents"}` 를 넣습니다.
+- 정확한 설정 모양과 순서는 [AGENTS.md](AGENTS.md) — AI 에이전트에게 맡겨도 됩니다.
 
 <br>
 
@@ -106,14 +92,14 @@ Claude Code 안에서:
 
 - **상담과 실행:** 실행하라고 하지 않으면 상담만 합니다. 앱을 띄우거나 파일을 만들지 않고 진단과 코드만 줍니다.
 - **검증:** 실행하면 결과를 되읽어 확인하고, 판정(PASS·WARN·FAIL)과 파일 경로를 보고합니다.
-- **메모리:** 쓰면서 알게 된 것(이 PC 의 환경 값, 오류와 해결법, 걸린 시간)을 Claude 에이전트 메모리(`~/.claude/agent-memory/<플러그인>-<에이전트>/`)에 스스로 기록합니다. 처음에는 비어 있습니다. 메모마다 파일 하나와 `MEMORY.md` 끝에 링크 한 줄을 쓰는 Claude Code 기본 형식이라 쓸수록 목록이 길어집니다. 같은 작성자의 [Harness-Memory](https://github.com/ohh000410/Harness-Memory)를 함께 설치하면 이 폴더들도 매일 밤 주제 목차로 묶이고 오래된 진행 기록은 보관으로 빠집니다. 에이전트 쪽 설정은 필요 없습니다(그 README 의 "Subagents 와 같이 쓰기").
-- **시작 훅:** 에이전트 파일은 이름·설명만 담은 껍데기이고, 에이전트가 뜰 때 플러그인 훅이 공통 규칙과 본문을 넣습니다(그 에이전트가 뜰 때만). 작성자가 실제로 쓰는 하네스와 같은 구조라, 앞으로 여러 하네스 동시 운용도 이 훅에 얹습니다.
+- **메모리:** 쓰면서 알게 된 것(이 PC 의 환경 값, 오류와 해결법, 걸린 시간)을 에이전트 메모리(`~/.claude/agent-memory/<플러그인>-<에이전트>/`)에 스스로 기록합니다. 세 하네스가 같은 폴더를 씁니다. 처음에는 비어 있습니다. 메모마다 파일 하나와 `MEMORY.md` 끝에 링크 한 줄을 쓰는 Claude Code 기본 형식이라 쓸수록 목록이 길어집니다. 같은 작성자의 [Harness-Memory](https://github.com/ohh000410/Harness-Memory)를 함께 설치하면 이 폴더들도 매일 밤 주제 목차로 묶이고 오래된 진행 기록은 보관으로 빠집니다. 에이전트 쪽 설정은 필요 없습니다(그 README 의 "Subagents 와 같이 쓰기").
+- **시작 훅:** 에이전트 파일은 이름·설명만 담은 껍데기이고, 에이전트가 뜰 때 훅이 공통 규칙과 본문을 넣습니다(그 에이전트가 뜰 때만 — Claude Code 는 플러그인 훅, Codex·Antigravity 는 `hooks/subagent-start.ps1`). 작성자가 실제로 쓰는 하네스와 같은 구조입니다.
 
 <br>
 
 ## 필요한 것
 
-- Windows 와 Claude Code — 지금은 Windows 전용입니다(시작 훅이 Windows PowerShell 로 돕니다). Windows 앱이 필요 없는 에이전트(doc-scan·plot-digitizer 등)는 훅 실행 방식만 바꾸면 되므로 추후 Linux·macOS 로 넓힐 수 있습니다.
+- Windows 와 Claude Code·Codex·Antigravity 중 하나 이상 — 지금은 Windows 전용입니다(시작 훅이 Windows PowerShell 로 돕니다). Windows 앱이 필요 없는 에이전트(doc-scan·plot-digitizer 등)는 훅 실행 방식만 바꾸면 되므로 추후 Linux·macOS 로 넓힐 수 있습니다.
 - 쓰려는 에이전트가 다루는 앱(위 표의 "필요한 앱")
 - Python. 에이전트마다 필요한 패키지와 앱 설치 경로는 각 에이전트 README 의 "필요한 것"에 있고, 경로가 다르면 처음 쓸 때 에이전트가 묻습니다.
 
